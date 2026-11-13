@@ -1,0 +1,38 @@
+<main class="notes-page">
+  <h1>Notas rápidas</h1>
+
+  <form (ngSubmit)="guardarNota()">
+    <label for="titulo">Título</label>
+    <input
+      id="titulo"
+      type="text"
+      name="titulo"
+      [(ngModel)]="titulo"
+      required
+    />
+
+    <label for="contenido">Contenido</label>
+    <input
+      id="contenido"
+      type="text"
+      name="contenido"
+      [(ngModel)]="contenido"
+      required
+    />
+
+    <button type="submit">Guardar</button>
+  </form>
+
+  <section>
+    <h2>Mis notas</h2>
+
+    @for (nota of notas(); track nota._id) {
+      <article class="note-card">
+        <h3>{{ nota.titulo }}</h3>
+        <p>{{ nota.contenido }}</p>
+      </article>
+    } @empty {
+      <p>No hay notas guardadas todavía.</p>
+    }
+  </section>
+</main>
